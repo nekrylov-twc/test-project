@@ -34,18 +34,18 @@ export default function ServerProbe() {
 
   return (
     <section className="card">
-      <h3>Что видит серверная функция</h3>
+      <h3>Прочитано на сервере при запросе</h3>
       <p className="muted small">
-        Ответ <code>/api/info</code> — те же переменные, но уже на рантайме. Локально функции нет,
-        поэтому здесь будет заглушка: это нормально.
+        Тот же деплой, но серверная часть: функция <code>/api/info</code> читает переменные в момент
+        запроса. Ей чекбокс с системными переменными не нужен — она видит их всегда.
       </p>
 
       {state === STATES.loading && <p className="muted">Запрашиваю…</p>}
 
       {state === STATES.absent && (
         <p className="muted">
-          Функция не отвечает JSON&apos;ом — похоже, это локальный запуск. На Vercel здесь появятся
-          реальные значения.
+          Функция не отвечает JSON&apos;ом — похоже, это локальный запуск: <code>npm run dev</code>{' '}
+          не поднимает папку <code>api/</code>. На Vercel здесь будут реальные значения.
           <br />
           <span className="small">{error}</span>
         </p>
@@ -53,7 +53,18 @@ export default function ServerProbe() {
 
       {state === STATES.fail && <p className="fail">Запрос не прошёл: {error}</p>}
 
-      {state === STATES.ok && <pre className="json">{JSON.stringify(data, null, 2)}</pre>}
+      {state === STATES.ok && (
+        <>
+          <pre className="json">{JSON.stringify(data, null, 2)}</pre>
+          <p className="muted small">
+            <strong>На что смотреть.</strong> <code>region</code> — где физически выполнился запрос.{' '}
+            <code>customGreeting</code> — переменная <code>MY_GREETING</code>, которую ты заводишь
+            сам. Если задать ей разные значения для Preview и Production, здесь будет то, что
+            положено этому окружению: так боевые секреты и разводят, чтобы preview ходил в тестовую
+            базу, а не в продовую.
+          </p>
+        </>
+      )}
 
       <button className="btn" onClick={load} disabled={state === STATES.loading}>
         Запросить ещё раз

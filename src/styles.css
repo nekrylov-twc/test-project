@@ -174,3 +174,49 @@ code, pre, .count { font-family: ui-monospace, SFMono-Regular, Consolas, monospa
 }
 
 footer { margin-top: 8px; text-align: center; }
+
+/* ── добавлено во второй итерации ─────────────────────────── */
+
+.hero { border-left: 4px solid var(--env); }
+.hero h2 { margin: 0 0 8px; font-size: 21px; letter-spacing: -0.01em; }
+.hero .facts {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+.hero .facts strong { color: var(--text); font-weight: 600; }
+.hero .facts a { color: var(--accent); }
+
+.warn { border-left: 4px solid #f0883e; }
+.warn h3 { color: #f0883e; }
+
+.steps-num { margin: 0 0 12px; padding-left: 20px; }
+.steps-num li { padding: 4px 0; font-size: 14px; }
+
+.addr {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.addr-head { display: flex; gap: 8px; align-items: baseline; }
+.addr a {
+  display: inline-block;
+  margin: 4px 0 6px;
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 13px;
+  word-break: break-all;
+}
+.addr p { margin: 0; }
+
+.btn.wide {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.steps label { align-items: flex-start; }
